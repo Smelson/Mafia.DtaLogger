@@ -8,12 +8,12 @@ int __stdcall DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
 		AllocConsole();
 		freopen("CONOUT$", "w", stdout);
 
-		hooks::get_game_version();
 		HMODULE rw_data = hooks::wait_for_rwdata();
 		DWORD dtaOpen = (DWORD)rw_data + 0x18A0 + 0x161;
 
 		printf("[INFO] -> rw_data.dll is loaded at 0x%0x\n\n", dtaOpen);
 		
+		CreateThread(nullptr, NULL, reinterpret_cast<LPTHREAD_START_ROUTINE>(hooks::dumper), nullptr, NULL, nullptr);
 		Helpers::InstallJmpHook(dtaOpen, (DWORD)hooks::dta_open);
 	}
 

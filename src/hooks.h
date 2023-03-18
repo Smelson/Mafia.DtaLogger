@@ -5,9 +5,9 @@
 
 namespace hooks
 {
-	void get_game_version();
 	HMODULE wait_for_rwdata();
 	void dta_open();
+	void dumper();
 }
 
 #endif
